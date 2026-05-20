@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京都五日旅遊行程</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1410;
+            --paper: #f5efe6;
+            --cream: #faf6f0;
+            --red: #c0392b;
+            --vermillion: #e84545;
+            --gold: #c9a84c;
+            --gold-light: #e8d5a3;
+            --muted: #8b7355;
+            --border: #d4c4a8;
+            --shadow: rgba(26, 20, 16, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            text-align: center;
+            padding: 60px 20px 50px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .header-deco {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(192, 57, 43, 0.06) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .torii-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 12px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .header-label {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 12px;
+            letter-spacing: 0.4em;
+            color: var(--vermillion);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--ink);
+            letter-spacing: 0.05em;
+        }
+
+        h1 .accent {
+            color: var(--vermillion);
+        }
+
+        .header-sub {
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--muted);
+            letter-spacing: 0.15em;
+            font-weight: 300;
+        }
+
+        .header-divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px auto 0;
+        }
+
+        /* Sakura petals */
+        .petal {
+            position: fixed;
+            top: -20px;
+            font-size: 18px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-30px) rotate(0deg);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Day navigation tabs */
+        .day-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(245, 239, 230, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .day-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .day-tab {
+            padding: 16px 22px;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            border: none;
+            background: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .day-tab:hover {
+            color: var(--ink);
+        }
+
+        .day-tab.active {
+            color: var(--vermillion);
+            border-bottom-color: var(--vermillion);
+        }
+
+        .day-tab .day-num {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2px;
+            font-family: 'Shippori Mincho', serif;
+        }
+
+        /* Main container */
+        .main {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        /* Day panel */
+        .day-panel {
+            display: none;
+            animation: panelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .day-panel.active {
+            display: block;
+        }
+
+        @keyframes panelIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Day header */
+        .day-header {
+            padding: 40px 0 24px;
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 36px;
+        }
+
+        .day-number-large {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 72px;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--gold-light);
+            letter-spacing: -0.02em;
+        }
+
+        .day-info {}
+
+        .day-info .day-badge {
+            display: inline-block;
+            background: var(--vermillion);
+            color: white;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            padding: 3px 10px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .day-info h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: linear-gradient(180deg, var(--gold), var(--border), var(--gold));
+        }
+
+        /* Timeline item */
+        .t-item {
+            position: relative;
+            margin-bottom: 0;
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .t-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .t-dot {
+            position: absolute;
+            left: -32px;
+            top: 14px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: 2px solid var(--paper);
+            box-shadow: 0 0 0 1px var(--gold);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .t-item:hover .t-dot {
+            background: var(--vermillion);
+            box-shadow: 0 0 0 1px var(--vermillion);
+            transform: scale(1.4);
+        }
+
+        .t-card {
+            display: flex;
+            gap: 0;
+            padding: 18px 0 18px 16px;
+            border-bottom: 1px solid rgba(212, 196, 168, 0.4);
+            transition: background 0.2s ease;
+            cursor: default;
+        }
+
+        .t-item:last-child .t-card {
+            border-bottom: none;
+        }
+
+        .t-card:hover {
+            background: rgba(201, 168, 76, 0.05);
+            border-radius: 8px;
+            margin: 0 -8px;
+            padding-left: 24px;
+            padding-right: 8px;
+        }
+
+        .t-time {
+            min-width: 54px;
+            font-family: 'Shippori Mincho', serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--vermillion);
+            letter-spacing: 0.03em;
+            padding-top: 1px;
+        }
+
+        .t-content {
+            flex: 1;
+        }
+
+        .t-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        .t-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .t-tag {
+            display: inline-block;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 6px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-transport {
+            background: rgba(52, 152, 219, 0.12);
+            color: #2980b9;
+        }
+
+        .tag-food {
+            background: rgba(231, 76, 60, 0.1);
+            color: #c0392b;
+        }
+
+        .tag-sightseeing {
+            background: rgba(39, 174, 96, 0.1);
+            color: #27ae60;
+        }
+
+        .tag-hotel {
+            background: rgba(155, 89, 182, 0.1);
+            color: #8e44ad;
+        }
+
+        .tag-shopping {
+            background: rgba(243, 156, 18, 0.12);
+            color: #d68910;
+        }
+
+        .tag-leisure {
+            background: rgba(26, 188, 156, 0.1);
+            color: #16a085;
+        }
+
+        /* Summary bar */
+        .day-summary {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .summary-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 400;
+            box-shadow: 0 1px 4px var(--shadow);
+        }
+
+        .summary-chip span {
+            font-size: 15px;
+        }
+
+        /* Highlight spots */
+        .highlight-strip {
+            background: linear-gradient(135deg, #fff9f0 0%, #fef5e7 100%);
+            border: 1px solid var(--gold-light);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 12px 16px;
+            margin-bottom: 28px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .highlight-strip strong {
+            color: var(--ink);
+            font-family: 'Noto Serif TC', serif;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.15em;
+        }
+
+        footer .sakura {
+            color: var(--vermillion);
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 42px;
+            height: 42px;
+            background: var(--vermillion);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(192, 57, 43, 0.35);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 200;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .day-header {
+                gap: 12px;
+            }
+
+            .day-number-large {
+                font-size: 52px;
+            }
+
+            .t-time {
+                min-width: 46px;
+                font-size: 12px;
+            }
+
+            .t-title {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sakura petals -->
+    <div class="petal" style="left:8%;animation-duration:8s;animation-delay:0s;">🌸</div>
+    <div class="petal" style="left:22%;animation-duration:11s;animation-delay:2s;">🌸</div>
+    <div class="petal" style="left:45%;animation-duration:9s;animation-delay:5s;">🌸</div>
+    <div class="petal" style="left:63%;animation-duration:13s;animation-delay:1s;">🌸</div>
+    <div class="petal" style="left:80%;animation-duration:7s;animation-delay:3.5s;">🌸</div>
+    <div class="petal" style="left:91%;animation-duration:10s;animation-delay:7s;">🌸</div>
+
+    <header>
+        <div class="header-deco"></div>
+        <span class="torii-icon">⛩️</span>
+        <div class="header-label">Japan Travel Itinerary</div>
+        <h1>京都<span class="accent">五日</span>行程</h1>
+        <div class="header-sub">Kyoto · 5 Days · 古都慢旅</div>
+        <div class="header-divider"></div>
+    </header>
+
+    <nav class="day-nav" id="dayNav">
+        <button class="day-tab active" onclick="switchDay(0)">
+            <span class="day-num">01</span>鴨川漫步
+        </button>
+        <button class="day-tab" onclick="switchDay(1)">
+            <span class="day-num">02</span>東山文化
+        </button>
+        <button class="day-tab" onclick="switchDay(2)">
+            <span class="day-num">03</span>嵐山金閣
+        </button>
+        <button class="day-tab" onclick="switchDay(3)">
+            <span class="day-num">04</span>朱紅鳥居
+        </button>
+        <button class="day-tab" onclick="switchDay(4)">
+            <span class="day-num">05</span>返程採買
+        </button>
+    </nav>
+
+    <main class="main">
+
+        <!-- DAY 1 -->
+        <div class="day-panel active" id="day-0">
+            <div class="day-header">
+                <div class="day-number-large">01</div>
+                <div class="day-info">
+                    <div class="day-badge">DAY ONE</div>
+                    <h2>抵達與鴨川漫步</h2>
+                </div>
+            </div>
+            <div class="day-summary">
+                <div class="summary-chip"><span>✈️</span> 關西機場入境</div>
+                <div class="summary-chip"><span>🚄</span> JR Haruka</div>
+                <div class="summary-chip"><span>🛍️</span> 錦市場</div>
+                <div class="summary-chip"><span>🌊</span> 鴨川夕陽</div>
+                <div class="summary-chip"><span>🍜</span> 先斗町晚餐</div>
+            </div>
+            <div class="highlight-strip">
+                <strong>✦ 今日小提醒</strong>
+                錦市場約 17:00 收攤，請把握下午時間前往；先斗町建議提早入座避開晚餐尖峰人潮。
+            </div>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">10:30</div>
+                        <div class="t-content">
+                            <div class="t-title">✈️ 抵達關西機場 (KIX)</div>
+                            <div class="t-desc">辦理入境手續，領取 JR Haruka 車票，確認行程一切準備就緒。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">11:44</div>
+                        <div class="t-content">
+                            <div class="t-title">🚄 搭乘 JR Haruka 22 號直達京都站</div>
+                            <div class="t-desc">約 75 分鐘車程，沿途可欣賞大阪平原風景，享受旅程的開始。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">13:05</div>
+                        <div class="t-content">
+                            <div class="t-title">🍱 抵達京都站，Porta 地下街快速午餐</div>
+                            <div class="t-desc">車站地下街美食選擇豐富，拉麵、烏龍麵、定食皆有，快速補充體力。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">14:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🏨 飯店 Check-in 或行李寄放</div>
+                            <div class="t-desc">建議選擇京都站或四條一帶住宿，地理位置交通便利，步行可達多個景點。</div>
+                            <span class="t-tag tag-hotel">住宿</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">15:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🏮 搭地鐵至四條，步行逛錦市場</div>
+                            <div class="t-desc">搭乘烏丸線至四條站，步行前往「京都の台所」錦市場，試吃各式小吃，17:00 前結束。</div>
+                            <span class="t-tag tag-shopping">購物</span>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">17:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🌅 鴨川散步 (四條大橋)</div>
+                            <div class="t-desc">漫步至鴨川四條大橋，欣賞夕陽映照河面，感受京都最悠閒的一面。</div>
+                            <span class="t-tag tag-leisure">休閒</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">19:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🍶 先斗町晚餐 ＆ 新京極逛街</div>
+                            <div class="t-desc">於先斗町享用正宗京料理晚餐，飯後逛新京極商店街補齊日用消耗品與伴手禮。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                            <span class="t-tag tag-shopping">購物</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-panel" id="day-1">
+            <div class="day-header">
+                <div class="day-number-large">02</div>
+                <div class="day-info">
+                    <div class="day-badge">DAY TWO</div>
+                    <h2>東山文化精華</h2>
+                </div>
+            </div>
+            <div class="day-summary">
+                <div class="summary-chip"><span>🏯</span> 清水寺</div>
+                <div class="summary-chip"><span>🪨</span> 三年坂・二年坂</div>
+                <div class="summary-chip"><span>🌸</span> 八坂神社</div>
+                <div class="summary-chip"><span>🏛️</span> 知恩院</div>
+                <div class="summary-chip"><span>🌆</span> 河原町夜晚</div>
+            </div>
+            <div class="highlight-strip">
+                <strong>✦ 今日小提醒</strong>
+                清水寺建議 08:00 前抵達，避開 10:00 後大批團客；全程以步行為主，穿著舒適鞋子為佳。
+            </div>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">07:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🚌 搭市巴士出發至清水道</div>
+                            <div class="t-desc">搭乘 206 路或 207 路市巴士，早起出發可享受晨光中的京都街景。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">08:00</div>
+                        <div class="t-content">
+                            <div class="t-title">⛩️ 清水寺（晨間參拜）</div>
+                            <div class="t-desc">清晨的清水寺人潮最少，朝陽灑落木舞台，景致絕美。建議在 10:00 前離開。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">10:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🪨 步行下山：三年坂 → 二年坂 → 八坂之塔</div>
+                            <div class="t-desc">沿石板小路緩步而下，兩旁特色商店與茶屋陸續開門，是街拍的最佳時刻。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                            <span class="t-tag tag-shopping">購物</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">12:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🍜 祇園 / 花見小路午餐</div>
+                            <div class="t-desc">推薦嘗試湯豆腐或手打蕎麥麵，感受老舗料理文化；花見小路建議午餐後快速漫步。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">14:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🌸 八坂神社 ＆ 圓山公園</div>
+                            <div class="t-desc">漫遊八坂神社石燈籠小徑，再進入圓山公園欣賞園林景致，偶有藝妓路過。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                            <span class="t-tag tag-leisure">休閒</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">16:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🏛️ 知恩院 或 高台寺</div>
+                            <div class="t-desc">視體力選擇：知恩院以宏偉三門著稱，高台寺則適合賞楓賞竹，氛圍靜謐。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">18:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🌃 河原町晚餐，感受京都夜生活</div>
+                            <div class="t-desc">河原町一帶餐廳選擇豐富，從居酒屋到懷石料理應有盡有，體驗繁華的京都夜晚。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day-panel" id="day-2">
+            <div class="day-header">
+                <div class="day-number-large">03</div>
+                <div class="day-info">
+                    <div class="day-badge">DAY THREE</div>
+                    <h2>嵐山與金碧輝煌</h2>
+                </div>
+            </div>
+            <div class="day-summary">
+                <div class="summary-chip"><span>🌿</span> 天龍寺</div>
+                <div class="summary-chip"><span>🎋</span> 竹林小徑</div>
+                <div class="summary-chip"><span>🚃</span> 嵐電復古電車</div>
+                <div class="summary-chip"><span>🏯</span> 金閣寺</div>
+                <div class="summary-chip"><span>🍜</span> 拉麵小路</div>
+            </div>
+            <div class="highlight-strip">
+                <strong>✦ 今日小提醒</strong>
+                嵐山竹林清晨人少，金閣寺下午 15:30 後人潮稍退；傍晚可在京都站 10 樓邊吃拉麵邊賞京都塔夜景。
+            </div>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">08:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🚄 JR 嵯峨野線前往嵯峨嵐山站</div>
+                            <div class="t-desc">從京都站出發，約 15 分鐘即抵達嵐山，車程短暫但風景怡人。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">09:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🌿 天龍寺參拜 ＋ 竹林小徑</div>
+                            <div class="t-desc">先參觀天龍寺曹源池庭園，再穿越著名竹林小徑，早晨光線透過竹葉灑落，如夢似幻。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">10:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🏯 常寂光寺 或 渡月橋拍照</div>
+                            <div class="t-desc">常寂光寺靜謐清幽，適合放慢腳步；渡月橋以龜山山景為背景，是嵐山最具代表性的風景。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">12:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🐟 嵐山大街午餐</div>
+                            <div class="t-desc">推薦嘗試鯛魚茶泡飯或嵐山在地拉麵，街邊也有嵐山豆腐、湯葉等名物可嚐試。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">13:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🚃 搭嵐電復古電車至北野白梅町</div>
+                            <div class="t-desc">嵐電（Randen）是京都最古老的路面電車，木製車廂充滿昭和懷舊感，本身就是旅途風景。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">14:15</div>
+                        <div class="t-content">
+                            <div class="t-title">🚌 轉乘巴士前往金閣寺</div>
+                            <div class="t-desc">搭乘 101、102、204 或 205 路公車前往，車程約 10 分鐘。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">14:30</div>
+                        <div class="t-content">
+                            <div class="t-title">✨ 金閣寺參觀</div>
+                            <div class="t-desc">貼滿金箔的舍利殿映照在鏡湖池上，壯觀至極。建議順時針繞行一圈，在不同角度欣賞金閣之美。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">16:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🚌 搭公車返回市區</div>
+                            <div class="t-desc">搭乘公車返回市中心，稍作休息後前往京都站用晚餐。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">18:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🍜 京都站 10 樓拉麵小路晚餐</div>
+                            <div class="t-desc">集結全日本各地知名拉麵，用餐後步上戶外平台欣賞京都塔夜景，為今日完美收尾。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 4 -->
+        <div class="day-panel" id="day-3">
+            <div class="day-header">
+                <div class="day-number-large">04</div>
+                <div class="day-info">
+                    <div class="day-badge">DAY FOUR</div>
+                    <h2>朱紅鳥居與將軍府邸</h2>
+                </div>
+            </div>
+            <div class="day-summary">
+                <div class="summary-chip"><span>⛩️</span> 伏見稻荷</div>
+                <div class="summary-chip"><span>🔴</span> 千本鳥居</div>
+                <div class="summary-chip"><span>🏯</span> 二條城</div>
+                <div class="summary-chip"><span>🌳</span> 京都御苑</div>
+                <div class="summary-chip"><span>🍱</span> 京町家料理</div>
+            </div>
+            <div class="highlight-strip">
+                <strong>✦ 今日小提醒</strong>
+                伏見稻荷建議走至「奧社奉拜所」即可折返，完整走完需 2 小時以上；京町家料理務必提前預約。
+            </div>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">08:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🚆 搭 JR 奈良線或京阪電鐵前往伏見稻荷</div>
+                            <div class="t-desc">JR 稻荷站出站即達，步行不到 2 分鐘；京阪電鐵伏見稻荷站需步行約 5 分鐘。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">09:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🔴 挑戰千本鳥居</div>
+                            <div class="t-desc">無數朱紅鳥居蜿蜒山腰，光影交錯令人屏息。建議走到「奧社奉拜所」（約 30 分鐘）即可折返，保留體力。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">11:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🚇 搭地鐵東西線至二條城前站</div>
+                            <div class="t-desc">從稻荷搭 JR 或京阪返回市區，轉乘地鐵東西線前往二條城，路線便捷。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">11:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🍱 二條城附近午餐</div>
+                            <div class="t-desc">二條城附近有許多質感簡餐小店，提供定食、烏龍、義式料理等多元選擇。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">13:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🏯 二條城參觀</div>
+                            <div class="t-desc">欣賞唐門精緻雕刻，走入二之丸御殿參觀，感受德川將軍府邸的氣派，地板的「鶯聲廊」是一絕。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">15:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🌳 京都御苑 或 下鴨神社（糺之森）</div>
+                            <div class="t-desc">京都御苑是城市中的廣大綠地，漫步其中如置身歷史；下鴨神社的糺之森則是世界遺產級的原始森林。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                            <span class="t-tag tag-leisure">休閒</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">18:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🏡 京町家料理晚餐</div>
+                            <div class="t-desc">在傳統町家建築中享用懷石或京料理，文化體驗與美食兼得。⚠️ 務必提早預約，晚餐尖峰時段難訂。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAY 5 -->
+        <div class="day-panel" id="day-4">
+            <div class="day-header">
+                <div class="day-number-large">05</div>
+                <div class="day-info">
+                    <div class="day-badge">DAY FIVE</div>
+                    <h2>最後採買與返程</h2>
+                </div>
+            </div>
+            <div class="day-summary">
+                <div class="summary-chip"><span>🛍️</span> Yodobashi/Aeon</div>
+                <div class="summary-chip"><span>🍱</span> 火車便當</div>
+                <div class="summary-chip"><span>🚄</span> JR Haruka 返程</div>
+                <div class="summary-chip"><span>🛫</span> 班機起飛</div>
+            </div>
+            <div class="highlight-strip">
+                <strong>✦ 今日小提醒</strong>
+                Haruka 13:30 出發，建議 13:00 前完成購物並取回行李；機場免稅店記得留時間！
+            </div>
+            <div class="timeline">
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">09:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🏨 飯店早餐後退房</div>
+                            <div class="t-desc">享用飯店最後一頓早餐，退房後將行李寄放於京都站的投幣式置物櫃，輕裝出發。</div>
+                            <span class="t-tag tag-hotel">住宿</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">10:00</div>
+                        <div class="t-content">
+                            <div class="t-title">⛪ 東本願寺 或 Yodobashi / Aeon Mall 補貨</div>
+                            <div class="t-desc">東本願寺步行即達，木造建築宏偉壯觀；或選擇前往 Yodobashi 電器、Aeon Mall 進行最後採購。</div>
+                            <span class="t-tag tag-sightseeing">景點</span>
+                            <span class="t-tag tag-shopping">購物</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">12:00</div>
+                        <div class="t-content">
+                            <div class="t-title">🍱 京都站伊勢丹購買火車便當</div>
+                            <div class="t-desc">京都伊勢丹地下食品樓選品精緻，挑選美味火車便當（駅弁）作為回程途中的午餐享受。</div>
+                            <span class="t-tag tag-food">餐飲</span>
+                            <span class="t-tag tag-shopping">購物</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">13:30</div>
+                        <div class="t-content">
+                            <div class="t-title">🚄 搭乘 JR Haruka 前往關西機場</div>
+                            <div class="t-desc">取回行李後搭乘 Haruka 特急列車，約 75 分鐘車程，輕鬆抵達機場。</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">14:50</div>
+                        <div class="t-content">
+                            <div class="t-title">🛍️ 抵達機場，免稅店掃貨</div>
+                            <div class="t-desc">完成登機手續後，享受最後的免稅購物時光：白色戀人、Royce 巧克力、資生堂化妝品等必買清單。</div>
+                            <span class="t-tag tag-shopping">購物</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-item">
+                    <div class="t-dot"></div>
+                    <div class="t-card">
+                        <div class="t-time">17:30</div>
+                        <div class="t-content">
+                            <div class="t-title">✈️ 班機起飛，再見京都！</div>
+                            <div class="t-desc">帶著滿滿的回憶與伴手禮，告別古都京都。期待下一次的相遇，またね！</div>
+                            <span class="t-tag tag-transport">交通</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <span class="sakura">🌸</span> 京都五日旅遊行程 · Kyoto 5-Day Itinerary <span class="sakura">🌸</span>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <script>
+        // Day switching
+        function switchDay(index) {
+            document.querySelectorAll('.day-panel').forEach((p, i) => {
+                p.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.day-tab').forEach((t, i) => {
+                t.classList.toggle('active', i === index);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(animateItems, 100);
+        }
+
+        // Scroll-triggered animation for timeline items
+        function animateItems() {
+            const items = document.querySelectorAll('.day-panel.active .t-item');
+            items.forEach((item, i) => {
+                item.classList.remove('visible');
+                setTimeout(() => item.classList.add('visible'), i * 80);
+            });
+        }
+
+        // Scroll to top button
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('scrollTop');
+            btn.classList.toggle('show', window.scrollY > 300);
+        });
+
+        // Init
+        animateItems();
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const active = [...document.querySelectorAll('.day-tab')].findIndex(t => t.classList.contains('active'));
+            if (e.key === 'ArrowRight' && active < 4) switchDay(active + 1);
+            if (e.key === 'ArrowLeft' && active > 0) switchDay(active - 1);
+        });
+    </script>
+</body>
+
+</html>
